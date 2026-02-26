@@ -1,0 +1,79 @@
+@import url('https://fonts.googleapis.com/css2?family=Paytone+One&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-display: 'Paytone One', sans-serif;
+}
+
+@layer base {
+  html{
+    font-family: var(--font-display);
+    color: white;
+  }
+
+  body {
+    background-color: black;
+  }
+}
+
+@layer components{
+  .btn-primary {
+    @apply bg-transparent text-white font-semibold py-2 px-4 rounded-2xl hover:bg-gray-800 transition ease-in-out;
+  }
+
+  .btn-secondary {
+    @apply bg-transparent text-white font-semibold py-2 px-4 rounded-2xl hover:bg-green-600 transition ease-in-out;
+  } 
+
+  /* Custom scrollbar styles */
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: #4b5563;
+    border-radius: 3px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: #6b7280;
+  }
+
+  /* Firefox scrollbar */
+  .custom-scrollbar {
+    scrollbar-width: thin;
+    scrollbar-color: #4b5563 transparent;
+  }
+
+  /* Hide scrollbar but keep functionality */
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  /* Toggle Switch */
+  .toggle-switch {
+    @apply relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 focus:ring-offset-gray-900 bg-gray-600;
+  }
+
+  .toggle-switch.active {
+    @apply bg-green-500;
+  }
+
+  .toggle-switch-thumb {
+    @apply inline-block h-4 w-4 transform rounded-full bg-white transition-transform translate-x-1;
+  }
+
+  .toggle-switch.active .toggle-switch-thumb {
+    @apply translate-x-6;
+  }
+}
