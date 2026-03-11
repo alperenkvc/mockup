@@ -56,7 +56,7 @@ const NotificationBox = ({ isInSideMenu = false }) => {
       })
 
       socket.on('new_notification', (notificationData) => {
-        // Normalize notification data (socket uses notification_id, API uses id)
+        // Normalize notification data to ensure it has the expected fields
         const normalizedNotification = {
           ...notificationData,
           id: notificationData.notification_id || notificationData.id,
@@ -117,7 +117,6 @@ const NotificationBox = ({ isInSideMenu = false }) => {
       if (notification.community_name) {
         navigate(`/r/${encodeURIComponent(notification.community_name)}`)
       } else {
-        // Fallback: try to navigate with entity_id (community ID)
         // This shouldn't happen if backend is working correctly
         navigate(`/r/${notification.entity_id}`)
       }

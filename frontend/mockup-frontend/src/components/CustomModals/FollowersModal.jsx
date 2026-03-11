@@ -37,7 +37,6 @@ const FollowersModal = ({ isOpen, onClose, userId, type = 'followers' }) => {
       setUsers([])
       setError('')
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isOpen, userId, type])
 
   const handleUserClick = (username) => {

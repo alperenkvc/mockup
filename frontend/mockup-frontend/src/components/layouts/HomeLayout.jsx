@@ -44,7 +44,7 @@ const HomeLayout = ({ children }) => {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  // Desktop: show when pinned or hovering (flyout). Mobile: show only when pinned (acts as drawer)
+  // Desktop: show when pinned or hovering. Mobile: show only when pinned
   const showMenu = (isDesktop && (isPinned || isHovering)) || (!isDesktop && isPinned);
 
   return (
@@ -64,7 +64,7 @@ const HomeLayout = ({ children }) => {
             }, 700);
           }}
           onMouseLeave={() => {
-            // Ignore mouse leave if we just clicked (within 200ms)
+            // Ignore mouse leave if user just clicked (within 200ms)
             if (Date.now() - clickTimestampRef.current < 200) {
               return;
             }

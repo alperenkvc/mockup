@@ -18,7 +18,6 @@ const SearchBar = () => {
 
   const isDesktop = window.innerWidth >= 1024
 
-  // Debounce search
   useEffect(() => {
     if (searchTerm.trim().length < 2) {
       setResults([])

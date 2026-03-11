@@ -66,7 +66,6 @@ const Community = () => {
     fetchCommunity()
   }, [decodedCommunityName])
 
-  // Fetch community posts when community is loaded and Posts tab is active
   useEffect(() => {
     const fetchPosts = async () => {
       if (!community?.id || activeTab !== 'Posts') return
@@ -87,7 +86,6 @@ const Community = () => {
     fetchPosts()
   }, [community?.id, activeTab])
 
-  // Fetch community members when community is loaded and Members tab is active
   useEffect(() => {
     const fetchMembers = async () => {
       if (!community?.id || activeTab !== 'Members') return
@@ -163,7 +161,7 @@ const Community = () => {
     handleJoinToggle()
   }
 
-  // Close privacy dropdown when clicking outside
+  // Close dropdown when clicking outside
   React.useEffect(() => {
     const handleClickOutside = (event) => {
       if (privacyRef.current && !privacyRef.current.contains(event.target)) {
@@ -244,7 +242,6 @@ const Community = () => {
 
   return (
     <>
-      {/* Flex container for main page - Community content on left, SideContent on right */}
       <div className='flex gap-6'>
         {/* Community content container */}
         <div className="flex-grow min-w-0">

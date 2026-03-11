@@ -6,12 +6,10 @@ import SideContent from '../../components/layouts/SideContent'
 const Popular = () => {
   return (
     <>
-      {/* HorizontalScrollSection at the top */}
       <div className="mb-6 w-full overflow-x-hidden">
         <HorizontalScrollSection />
       </div>
 
-      {/* Flex container for Popular Posts and Sidebar */}
       <div className='flex flex-wrap gap-6 items-start'>
         {/* Popular Posts container */}
         <div className="flex-grow min-w-0">

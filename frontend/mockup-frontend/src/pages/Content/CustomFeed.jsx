@@ -89,9 +89,8 @@ const CustomFeed = () => {
       if (!feedId) return
 
       try {
-        const result = await api.getFeedCollaborators(feedId)
-        // Handle both { collaborators: [...] } and direct array response
-        setCollaborators(result.collaborators || result || [])
+        const result = await api.getFeedCollaborators(feedId);
+        setCollaborators(result.collaborators || result || []);
       } catch (err) {
         console.error('Error fetching collaborators:', err)
         setCollaborators([])
@@ -103,7 +102,6 @@ const CustomFeed = () => {
     }
   }, [feedId])
 
-  // Fetch pending requests (only for feed owner)
   useEffect(() => {
     const fetchPendingRequests = async () => {
       if (!feedId || !feed || !user) return
@@ -116,7 +114,6 @@ const CustomFeed = () => {
         const result = await api.getPendingRequests(feedId)
         setPendingRequests(result.pendingRequests || result || [])
       } catch (err) {
-        // If 403, user is not owner, so silently fail
         if (err.response?.status !== 403) {
           console.error('Error fetching pending requests:', err)
         }
@@ -131,7 +128,6 @@ const CustomFeed = () => {
     }
   }, [feedId, feed, user])
 
-  // Search for communities
   useEffect(() => {
     if (!showAddCommunities || searchTerm.trim().length < 2) {
       setSearchResults([])
@@ -160,7 +156,6 @@ const CustomFeed = () => {
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (searchRef.current && !searchRef.current.contains(event.target)) {
-        // Don't close if clicking on the "Add more groups" button
         if (!event.target.closest('[data-add-communities-button]')) {
           setShowAddCommunities(false)
           setSearchTerm('')
@@ -193,7 +188,6 @@ const CustomFeed = () => {
       // Clear search
       setSearchTerm('')
       setSearchResults([])
-      // Refresh posts in case new communities have posts
       const postsData = await api.getFeedPosts(feedId)
       setPosts(postsData || [])
     } catch (error) {
@@ -206,7 +200,7 @@ const CustomFeed = () => {
   }
 
   const handleRemoveCommunity = async (communityId, e) => {
-    e.stopPropagation() // Prevent navigation when clicking remove button
+    e.stopPropagation()
     if (!feedId || removingCommunity) return
 
     if (!window.confirm('Are you sure you want to remove this group from the content capsule?')) {
@@ -395,7 +389,6 @@ const CustomFeed = () => {
 
   return (
     <>
-      {/* Flex container for main page - Feed content on left, SideContent on right */}
       <div className='flex gap-6'>
         {/* Feed content container */}
         <div className="flex-grow min-w-0">

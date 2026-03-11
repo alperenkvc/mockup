@@ -20,30 +20,25 @@ const PostDetail = () => {
       try {
         setLoading(true)
         setError('')
-        // First try to fetch normally
         let postData = await api.getPostById(postId)
         
-        // If not found and user is authenticated, try fetching with includeDeleted
         // This allows moderators to view deleted posts and their comments
         if (!postData && isAuthenticated) {
           try {
             postData = await api.getPostById(postId, true)
           } catch (deletedErr) {
-            // If that also fails, use the original error
             throw deletedErr
           }
         }
         
         setPost(postData)
       } catch (err) {
-        // If 404, try fetching with includeDeleted for moderators
         if (err.response?.status === 404 && isAuthenticated) {
           try {
             const postData = await api.getPostById(postId, true)
             setPost(postData)
             return
           } catch (retryErr) {
-            // If retry also fails, show error
             setError(err.message || 'Failed to load post')
             console.error('Error fetching post:', err)
           }
@@ -85,9 +80,8 @@ const PostDetail = () => {
 
   return (
     <>
-      {/* Flex container for main page - Post on left, SideContent on right */}
       <div className='flex flex-wrap gap-6 items-start'>
-        {/* Post container - centered with responsive width */}
+        {/* Post container*/}
         <div className="flex-grow min-w-0 flex justify-center lg:justify-start">
           <div className='w-full max-w-2xl'>
             <PostCard 
@@ -95,7 +89,6 @@ const PostDetail = () => {
               showCommentsByDefault={true}
               disableHover={true}
               onDelete={(deletedPostId) => {
-                // Navigate back to home if post is deleted
                 navigate('/')
               }}
             />

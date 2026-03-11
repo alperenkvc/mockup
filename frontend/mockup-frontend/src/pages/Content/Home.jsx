@@ -28,9 +28,8 @@ const Home = () => {
 
   return (
     <>
-      {/* Flex container for main page - Posts on left, SideContent on right */}
       <div className='flex flex-wrap gap-6 items-start'>
-        {/* Post container - centered with responsive width */}
+        {/* Post container*/}
         <div className="flex-grow min-w-0 flex justify-center lg:justify-start">
           <div className='w-full max-w-2xl'>
             {loading && (

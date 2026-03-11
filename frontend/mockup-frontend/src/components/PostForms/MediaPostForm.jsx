@@ -72,7 +72,6 @@ const MediaPostForm = () => {
       return
     }
 
-    // Backend only accepts single file, so we'll use the first file
     if (files.length > 1) {
       setError('Please select only one file')
       return
@@ -84,7 +83,7 @@ const MediaPostForm = () => {
     try {
       const formData = new FormData()
       formData.append('title', title)
-      formData.append('image', files[0]) // Backend expects 'image' field name
+      formData.append('image', files[0])
       if (communityId) {
         formData.append('community_id', communityId)
       }

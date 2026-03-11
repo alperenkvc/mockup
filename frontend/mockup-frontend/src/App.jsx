@@ -20,11 +20,10 @@ import {
   Outlet
 } from "react-router-dom";
 
-// Layout wrapper component - keeps Navbar, SideMenu, and HomeLayout mounted across all routes
 const LayoutWrapper = () => {
   return (
     <HomeLayout>
-      <Outlet /> {/* This renders the matched child route */}
+      <Outlet />
     </HomeLayout>
   );
 };
@@ -34,7 +33,6 @@ const App = () => {
     <div>
       <Router>
         <Routes>
-          {/* All routes wrapped in LayoutWrapper - layout stays mounted */}
           <Route element={<LayoutWrapper />}>
             <Route path="/" element={<Home />} />
             <Route path="/popular" element={<Popular />} />

@@ -21,7 +21,6 @@ const poolConfig = process.env.DATABASE_URL
 
 const pool = new Pool(poolConfig);
 
-// Keep your debug logs clean
 console.log(process.env.DATABASE_URL ? "Connected via DATABASE_URL" : "Connected via local variables");
 
 pool.on('error', (err) => {

@@ -16,7 +16,7 @@ export const AuthProvider = ({ children }) => {
       
       if (token && storedUser) {
         try {
-          // Verify token is still valid by fetching profile
+          // Verify token is still valid
           const userData = await api.getProfile();
           setUser({
             id: userData.id,

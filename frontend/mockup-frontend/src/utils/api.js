@@ -30,17 +30,14 @@ apiClient.interceptors.response.use(
     return response.data;
   },
   (error) => {
-    // Extract error message from response
     const message = error.response?.data?.message || 
                     error.response?.data?.error || 
                     error.message || 
                     'An error occurred';
     
-    // Handle 401 Unauthorized - clear token and redirect to login
     if (error.response?.status === 401) {
       localStorage.removeItem('token');
       localStorage.removeItem('user');
-      // You can add redirect logic here if needed
     }
     
     return Promise.reject(new Error(message));
@@ -152,7 +149,6 @@ export const api = {
   },
 
   getCommunityByName: async (communityName) => {
-    // URL encode the community name to handle special characters like "/" in names starting with "r/"
     const encodedName = encodeURIComponent(communityName);
     return apiClient.get(`/communities/name/${encodedName}`);
   },
@@ -199,7 +195,6 @@ export const api = {
   },
 
   addComment: async (postId, commentData) => {
-    // If commentData is FormData, send with multipart/form-data header
     if (commentData instanceof FormData) {
       return apiClient.post(`/posts/${postId}/comment`, commentData, {
         headers: {
@@ -207,7 +202,6 @@ export const api = {
         },
       });
     }
-    // Otherwise send as JSON
     return apiClient.post(`/posts/${postId}/comment`, commentData);
   },
 

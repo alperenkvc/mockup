@@ -12,7 +12,7 @@ const Modal = ({ children, isOpen, onClose, title }) => {
     >
       <div
         className="relative p-4 w-full max-w-2xl max-h-full overflow-y-auto"
-        onClick={(e) => e.stopPropagation()} // prevents closing when clicking modal content
+        onClick={(e) => e.stopPropagation()}
       >
         <div className="relative bg-gray-900 rounded-lg shadow-sm ">
 

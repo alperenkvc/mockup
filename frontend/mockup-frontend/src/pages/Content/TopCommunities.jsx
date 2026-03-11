@@ -22,17 +22,14 @@ const TopCommunities = () => {
                 setLoading(true)
                 setError('')
                 
-                // Fetch all communities
                 const allCommunities = await api.getAllCommunities()
                 setCommunities(allCommunities || [])
 
-                // Fetch user's communities if authenticated
                 if (isAuthenticated) {
                     try {
                         const userComms = await api.getUserCommunities()
                         setUserCommunities(userComms || [])
                     } catch (err) {
-                        // If user is not authenticated or error, just continue without user communities
                         console.error('Error fetching user communities:', err)
                     }
                 }
@@ -53,7 +50,6 @@ const TopCommunities = () => {
 
     const handleJoinClick = (communityId, communityName) => {
         if (!isAuthenticated) {
-            // Could redirect to login or show a message
             return
         }
         setConfirmModal({

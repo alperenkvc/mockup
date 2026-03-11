@@ -83,7 +83,7 @@ const SideMenu = ({ isExpanded, isPinned, isDesktop = true, togglePin, onMouseEn
   const isFlyout = isDesktop && !isPinned && isExpanded;
   const widthClass = isPinned ? 'w-64' : (isFlyout ? 'w-64' : 'w-0 lg:w-14');
   const positionClass = 'lg:sticky top-[61px]';
-  // Higher z-index on mobile when expanded to ensure menu is above backdrop
+  //ensure menu is above backdrop
   const zClass = isFlyout ? 'z-40' : (!isDesktop && isExpanded ? 'z-50' : 'z-30');
   const overflowClass = !isExpanded && !isPinned ? 'overflow-hidden' : 'overflow-y-auto';
 
@@ -102,7 +102,6 @@ const SideMenu = ({ isExpanded, isPinned, isDesktop = true, togglePin, onMouseEn
 
   return (
     <>
-      {/* Backdrop for mobile drawer - positioned outside menu container */}
       {!isDesktop && isExpanded && (
         <div 
           className="fixed inset-0 bg-black/30 z-40 transition-opacity duration-300" 
@@ -163,7 +162,7 @@ const SideMenu = ({ isExpanded, isPinned, isDesktop = true, togglePin, onMouseEn
                     <span>View Profile</span>
                   </button>
                   <button className={linkClasses} onClick={() => {
-                    // Edit avatar functionality - you can add a modal or navigation here
+                    // Edit avatar functionality
                     console.log('Edit avatar');
                   }}>
                     <FaUserEdit size={20} className="flex-shrink-0" />

@@ -53,7 +53,6 @@ const UserProfile = () => {
         setProfileUser(userData)
         // Set follow state and followers/following count from profile data
         setIsFollowing(userData?.is_followed_by_me || false)
-        // Ensure counts are converted to numbers (handle string "01" -> 1)
         setFollowersCount(Number(userData?.followers_count) || 0)
         setFollowingCount(Number(userData?.following_count) || 0)
       } catch (err) {
@@ -209,7 +208,6 @@ const UserProfile = () => {
 
   return (
     <>
-      {/* Flex container for main page - Profile content on left, SideContent on right */}
       <div className='flex gap-6'>
         {/* Profile content container */}
         <div className="flex-grow min-w-0">
